@@ -1,0 +1,136 @@
+@charset "utf-8";
+
+#header {
+  text-align: center;
+}
+#header h1 {
+  margin: 20px 0px 20px 0px;
+  letter-spacing: 0.2em;
+}
+
+body {
+    /*background-image: url(/media/images/fon.jpg);*/
+    background: #6fb866;
+}
+
+#main {
+  text-align: left;
+  border: 1px #cccccc solid;
+  min-height: 440px;
+  background: cornsilk;
+}
+
+#footer {
+  text-align: right;
+  border-top: 1px #cccccc solid;
+  padding-right: 10px;
+}
+
+.form {
+  width: 90%;
+  margin: 20px 20px 20px 20px;
+  border-collapse: collapse;
+}
+
+.label {
+  color: #0000cc;
+}
+
+
+.honeypot {
+  display: none;
+}
+
+table caption {
+}
+
+table td {
+    width:100%;
+    padding: 15px;
+    background: white;
+}
+
+table th {
+    padding: 5px;
+    background: white;
+}
+
+.flex-container_row {
+    margin: 20px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.flex-container_column {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.detail_title {
+    margin-left: 20px;
+}
+
+.flex-container_page {
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.flex-container_bc {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.flex-container_right_align {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.flex-block {
+    width: 25%;
+    margin: 5px;
+    padding: 10px 10px;
+    border: 2px solid #1816af;
+    border-radius: 5px;
+    background: white;
+}
+
+.newlist-button{
+    margin: 20px 0;
+}
+
+.breadcrumb {
+    margin: 10px 0;
+}
+
+a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #9a0c17; /* цвет текста для нективной ссылки */
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.input-group {
+    margin: 10px;
+}

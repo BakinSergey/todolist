@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block title %} TaskList:: Создание Списка {% endblock %}
+
+{% block main %}
+    <div class="flex-container_column">
+         <div class="form flex-block">
+             <h2>Создание списка</h2>
+             <form action="" method="post">
+                 {% include "generic/form.html" %}
+                 <div class="submit-button"><input type="submit" value="Создать"></div>
+             </form>
+         </div>
+    </div>
+
+{% endblock %}

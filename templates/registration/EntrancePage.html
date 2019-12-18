@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+
+{% block main %}
+
+    <div class="flex-container_row">
+        <div>
+            <img src="/media/images/tdl.jpg" width="40%">
+        </div>
+
+        <div class="flex-container_column">
+                <div class="list-group-item active">
+                    <span class="glyphicon glyphicon-star"></span> Создавайте и редактируйте ToDo-cписки!
+                </div>
+                <div class="list-group-item disabled">
+                    <span class="glyphicon glyphicon-user"></span> Зарегистрировано пользователей: <span class="badge">{{ user_total_nmb }}</span>
+                </div>
+                <div class="list-group-item disabled">
+                    <span class="glyphicon glyphicon-th-list"></span> Создано ToDo списков: <span class="badge">{{ ttn }}</span>
+                </div>
+                <div class="list-group-item disabled">
+                    <span class="glyphicon glyphicon-ok"></span> Выполнено списков:  <span class="badge">{{ ctn }}</span>
+                </div>
+                <div class="list-group-item disabled">
+                    <span class="glyphicon glyphicon-time"></span> Последний список: <span class="bold"> "{{ lct.title }}" </span> создал:<span class="bold">{{ lct.user.get_username }}</span> это было:  <span class="badge">{{ lct.created }}</span>
+                </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+{% extends "main.html" %}
+{% block title %}Список ToDoList {% endblock %}
+{% block main %}
+
+<form class="input-group" action="{% url 'tasklist_index' %}" method="get" accept-charset="utf-8">
+    <input type="text" placeholder="Найти список по названию или описанию" class="input form-control" name="q">
+    <span class="input-group-btn">
+            <button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Поиск</button>
+    </span>
+</form>
+
+<div class="flex-container_column">
+    <table class="table-bordered">
+        <caption> СПИСКИ ЗАДАЧ (TODOLISTs)</caption>
+        <tr>
+            <th> Название </th>
+            <th> Выполнено задач: </th>
+            <th> НЕ выполнено задач: </th>
+            <th> Статус</th>
+            <th> Описание </th>
+            <th> Дата создания </th>
+            <th> Удалить </th>
+        </tr>
+        {% for object in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url "tasklist_detail" pk=object.pk %}?page={{ page_obj.number }}">{{ object.title }}</a>
+                </td>
+                <td>
+                    <p> {{object.get_complete_task_number}}</p>
+                </td>
+                <td>
+                    <p> {{object.get_uncomplete_task_number}}</p>
+                </td>
+                <td>
+                    {%  if object.status %}
+                    <span style="color: #1a9a10;" class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                    <span style="color: #c12e2a;" class="glyphicon glyphicon-minus"></span>
+                    {% endif %}
+                </td>
+                <td>{{ object.description}}</td>
+                <td> {{ object.created|date:"j.m.Y H:i:s" }}</td>
+                <td>
+                    <form action="{% url "tasklist_delete" pk=object.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Удалить">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="flex-container_page">
+        {% include "pagination.html" %}
+    </div>
+
+    <form action="{% url "tasklist_create" %}" method="post">
+        {% csrf_token %}
+        <div class="newlist-button"><input type="submit" value="Создать список"></div>
+    </form>
+
+</div>
+    <hr>
+    <div class="flex-container_row">
+        <div class="flex-block">Вы создали списков:<span class="bold">{{ u_ttn }}</span> </div>
+        <div class="flex-block">Выполнено списков:<span class="bold">{{ u_ctn }} </span> </div>
+        {% if u_ttn > 0 %}
+            <div class="flex-block"><a href="{% url 'tasklist_detail' pk=u_ect.id %}">Самый_старый: <span class="bold">{{ u_ect.title }} </span> cоздан: {{ u_ect.created  }}</a> </div>
+            <div class="flex-block"><a href="{% url 'tasklist_detail' pk=u_lct.id %}">Самый_новый:  <span class="bold">{{ u_lct.title }} </span> cоздан: {{ u_lct.created  }}</a> </div>
+        {% endif %}
+        <div class="flex-block"> Текущий пользователь: <span class="bold">{{ user }}</span></div>
+    </div>
+
+{% endblock %}

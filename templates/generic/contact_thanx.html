@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Обратная связь</title>
+</head>
+<body>
+    <p> Сообщение отправлено</p>
+    <form action="{% url "entrance" %}" method="post">
+        {% csrf_token %}
+        <div class="submit-button"><input type="submit" value="На главную"></div>
+    </form>
+</body>
+</html>
+

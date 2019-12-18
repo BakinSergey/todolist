@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+div h2 {
+  margin-left: 50px;
+  text-align: left;
+}
+
+.contact-body {
+  margin: 50px;
+}
+

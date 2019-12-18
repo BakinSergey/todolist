@@ -1,0 +1,82 @@
+{% extends "main.html" %}
+{% block title %}
+    {{ tasklist.title }}
+{% endblock %}
+
+{% block bc_level_1 %}
+    <li><a href={% url "tasklist_detail" pk=tasklist.pk %}>Детали Списка</a> </li>
+{% endblock %}
+
+{% block main %}
+    <div>
+        <div class="detail_title">
+            <h2> {{ tasklist.title }} </h2>
+        </div>
+    </div>
+    <hr>
+    <div class="flex-container_row">
+        <div class="flex-container_column">
+{#            <div class="tl_image">#}
+{#                <img src="{{ MEDIA_URL }}{{ ListImage }}" width="400px">#}
+{#            </div>#}
+{#            <div>#}
+{#                <form action="{% url "image_edit" list=tasklist.pk %}" method="get">#}
+{#                                {% csrf_token %}#}
+{#                                <div class="submit-button"><input type="submit" value="Выбрать изображение"></div>#}
+{#                </form>#}
+{#            </div>#}
+            <div class="form">
+                {{ form.as_p }}
+            </div>
+        </div>
+        <div class="flex-container_column">
+            <table class="table-bordered">
+                <caption> ЗАДАЧИ СПИСКА (TASKs)</caption>
+                <th> Текст </th>
+                <th> Статус</th>
+                <th> Создана</th>
+                <th> Правка </th>
+                <th> Удаление </th>
+
+                {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.text }}</td>
+                            <td>
+                                {%  if task.status %}
+                                    <span style="color: #1a9a10;" class="glyphicon glyphicon-ok"></span>
+                                {% else %}
+                                    <span style="color: #c12e2a;" class="glyphicon glyphicon-minus"></span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <p class="posted">{{ task.created|date:"j.m.Y H:i:s" }}</p>
+                            </td>
+                            <td>
+                                <form action="{% url "task_edit" pk=tasklist.pk upd=task.pk %}" method="get">
+                                {% csrf_token %}
+                                <div class="submit-button"><input type="submit" value="Правка"></div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{% url "task_delete" pk=tasklist.pk del=task.pk %}" method="post">
+                                {% csrf_token %}
+                                <div class="submit-button"><input type="submit" value="Удалить"></div>
+                                </form>
+                            </td>
+                        </tr>
+                {% endfor %}
+            </table>
+            <form action="{% url "task_add" pk=tasklist.pk %}" method="post">
+                {% csrf_token %}
+                <div class="submit-button"><input type="submit" value="Добавить задачу"></div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="flex-container_row">
+        <div class="flex-block"> ToDoList выполнен на {{ tasklist.get_tasklist_complete_percent|floatformat }}% </div>
+        <span>&nbsp;&nbsp;</span>
+        <div class="flex-block bold"> <a href="{% url "tasklist_index" %}?page={{ pn }}">  Назад - к  списку ToDoList</a></div>
+    </div>
+
+{% endblock %}
